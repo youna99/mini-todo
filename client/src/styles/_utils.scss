@@ -1,0 +1,18 @@
+@mixin todoContainer {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+@mixin inputFocus {
+  outline: none;
+  border-bottom: 2px solid lightblue;
+}
+
+@mixin buttonStyle {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 12px;
+}

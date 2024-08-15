@@ -1,0 +1,71 @@
+@import "./utils";
+
+body {
+  background-color: lightgray;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vw;
+  margin: 50px 0;
+  border-radius: 20px;
+}
+
+.TodoList {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.Todo {
+  padding: 10px 0;
+  @include todoContainer;
+
+  .todoTitle {
+    font-size: medium;
+    border: none;
+    width: 70%;
+    padding: 10px;
+    &:focus {
+      @include inputFocus;
+    }
+  }
+
+  .deleteButton {
+    @include buttonStyle;
+    // transition: background-color 0.3s ease;
+    &:hover {
+      background-color: lightcoral;
+    }
+  }
+}
+
+.AddTodo {
+  padding: 35px 0;
+  width: 80%;
+  @include todoContainer;
+
+  .addTodoTitle {
+    font-size: medium;
+    border: none;
+    border-bottom: 2px dashed lightblue;
+    padding: 10px;
+    width: 80%;
+    &:focus {
+      @include inputFocus;
+    }
+  }
+
+  .addButton {
+    @include buttonStyle;
+    background-color: lightblue;
+    &:hover {
+      background-color: skyblue;
+    }
+  }
+}

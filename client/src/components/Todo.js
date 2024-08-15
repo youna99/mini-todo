@@ -50,6 +50,7 @@ export default function Todo({ item, deleteItem }) {
   return (
     <div className="Todo">
       <input
+        className="checkbox"
         type="checkbox"
         id={`todo${todoItem.id}`}
         name={`todo${todoItem.id}`}
@@ -58,6 +59,7 @@ export default function Todo({ item, deleteItem }) {
         onChange={checkboxEventHandler}
       />
       <input
+        className="todoTitle"
         type="text"
         value={todoItem.title}
         readOnly={readOnly}
@@ -66,7 +68,9 @@ export default function Todo({ item, deleteItem }) {
         onKeyDown={enterKeyEventHandler}
       />
       {/* <label htmlFor="todo0">{item.title}</label> */}
-      <button onClick={onDeleteButtonClick}>DELETE</button>
+      <button className="deleteButton" onClick={onDeleteButtonClick}>
+        DELETE
+      </button>
     </div>
   );
 }

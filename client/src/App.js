@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Todo from "./components/Todo";
 import AddTodo from "./components/AddTodo";
+import "./styles/Todo.scss";
 
 function App() {
   // 현재 할 일 데이터 상태관리 / 초기값 객체로 저장
@@ -46,11 +47,14 @@ function App() {
 
   return (
     <div className="App">
+      <h2>Todo List</h2>
       <AddTodo addItem={addItem} />
-      {todoItems.map((item) => {
-        // console.log('item >>>>> ', item); // {id: 1, title: 'my todo1', done: false}
-        return <Todo key={item.id} item={item} deleteItem={deleteItem} />;
-      })}
+      <div className="TodoList">
+        {todoItems.map((item) => {
+          // console.log('item >>>>> ', item); // {id: 1, title: 'my todo1', done: false}
+          return <Todo key={item.id} item={item} deleteItem={deleteItem} />;
+        })}
+      </div>
     </div>
   );
 }
