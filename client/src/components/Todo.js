@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 export default function Todo({ item, deleteItem, updateItem }) {
   // 재렌더링 되는 모든 활동 시
@@ -8,14 +8,14 @@ export default function Todo({ item, deleteItem, updateItem }) {
   const [readOnly, setReadOnly] = useState(true); // 수정 시 필요한 input 속성(readonly) 상태관리
 
   // delete 버튼 클릭시 props로 받은 daleteItem 함수 실행 : 변경된 데이터
-  const onDeleteButtonClick = () => {
+  const onDeleteButtonClick = useCallback(() => {
     deleteItem(todoItem);
-  };
+  }, [deleteItem]);
 
   // title 클릭 시 실행될 함수 : readOnly를 false로 변경
-  const offReadOnlyMode = () => {
+  const offReadOnlyMode = useCallback(() => {
     setReadOnly(false);
-  };
+  }, []);
 
   // readOnly true: enter키 누르면 readOnly를 true로 변경
   const enterKeyEventHandler = (e) => {
