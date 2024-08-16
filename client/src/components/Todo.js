@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Todo({ item, deleteItem }) {
+export default function Todo({ item, deleteItem, updateItem }) {
   // 재렌더링 되는 모든 활동 시
   console.log("item >>>>> ", item); // {id: 1, title: 'my todo1', done: false}
 
@@ -21,6 +21,7 @@ export default function Todo({ item, deleteItem }) {
   const enterKeyEventHandler = (e) => {
     if (e.key === "Enter") {
       setReadOnly(true);
+      updateItem(todoItem); // 수정1 - 엔터 누르면 저장
     }
   };
 
@@ -37,12 +38,20 @@ export default function Todo({ item, deleteItem }) {
 
   // checkbox 업데이트
   const checkboxEventHandler = (e) => {
+    // rest: id, title 정보
     const { done, ...rest } = todoItem;
 
-    setTodoItem({
+    const updatedItem = {
       done: e.target.checked,
       ...rest,
-    });
+    }
+
+    setTodoItem(
+      // {done: e.target.checked,
+      // ...rest,}
+      updateItem
+    );
+    updateItem(updatedItem) // 수정2 - 체크 박스 변경시 저장
     // checked의 상태
     console.log("e.target.checked >>>> ", e.target.checked); // true, false
   };

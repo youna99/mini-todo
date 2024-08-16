@@ -1,4 +1,3 @@
-const { raw } = require('express');
 const { Todo } = require('../models');
 const { Op } = require('sequelize');
 

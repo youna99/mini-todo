@@ -16,11 +16,12 @@ export default function AddTodo({ addItem }) {
 
   // 과제1) add enter키로 실행.
   const enterKeyEventHandler = (e) => {
-    if (e.key === "Enter") {
-      addItem(todoItem);
-      setTodoItem({
-        title: "",
-      });
+    if (e.key === "Enter" && e.nativeEvent.isComposing) {
+      // addItem(todoItem);
+      // setTodoItem({
+      //   title: "",
+      // });
+        onButtonClick();
     }
   };
 

@@ -26,6 +26,19 @@ body {
   padding: 10px 0;
   @include todoContainer;
 
+  input[type='checkbox'] {
+    width: 24px;
+    height: 24px;
+    margin: auto 0;
+    // accent-color: red;
+  }
+
+  input[type='checkbox']:checked {
+    // background-color: #ff8955;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
   .todoTitle {
     font-size: medium;
     border: none;
