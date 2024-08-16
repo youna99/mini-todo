@@ -13,9 +13,10 @@ function App() {
   // Read API
   useEffect(() => {
     console.log('첫 렌더링 완료!');
+    console.log(process.env.REACT_APP_DB_HOST);
 
     const getTodos = async () => {
-      let res = await axios.get('http://localhost:8080/api/todos');
+      let res = await axios.get(`${process.env.REACT_APP_DB_HOST}/api/todos`);
 
       setTodoItems(res.data);
     };
@@ -32,7 +33,7 @@ function App() {
     // setTodoItems([...todoItems, newItem]);
     // console.log('newItem >>>>> ', newItem);
     
-    const res = await axios.post('http://localhost:8080/api/todo', newItem)
+    const res = await axios.post(`${process.env.REACT_APP_DB_HOST}/api/todo`, newItem)
     setTodoItems([...todoItems, res.data]);
   };
 
@@ -43,7 +44,7 @@ function App() {
     // setTodoItems(newTodoItems);
     console.log('targetItem >>>> ', targetItem);
 
-    await axios.delete(`http://localhost:8080/api/todo/${targetItem.id}`);
+    await axios.delete(`${process.env.REACT_APP_DB_HOST}/api/todo/${targetItem.id}`);
     const newTodoItems = todoItems.filter((e) => e.id !== targetItem.id);
     setTodoItems(newTodoItems);
   };
@@ -55,16 +56,19 @@ function App() {
 
   const updateItem = async (targetItem) => {
     console.log('targetItem >>>', targetItem);
-    await axios.patch(`http://localhost:8080/api/todo/${targetItem.id}`, targetItem);
+    await axios.patch(`${process.env.REACT_APP_DB_HOST}/api/todo/${targetItem.id}`, targetItem);
   }
 
   return (
     <div className="App">
       <AddTodo addItem={addItem} />
-      {todoItems.map((item) => {
-        // console.log('item >>>>> ', item); // {id: 1, title: 'my todo1', done: false}
-        return <Todo key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem}/>;
-      })}
+      <div className='TodoList'>
+        {todoItems.map((item) => {
+          // console.log('item >>>>> ', item); // {id: 1, title: 'my todo1', done: false}
+          return <Todo key={item.id} item={item} deleteItem={deleteItem} updateItem={updateItem}/>;
+        })}
+      </div>
+
     </div>
   );
 }
